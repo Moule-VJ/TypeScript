@@ -1,6 +1,3 @@
-let awesomeName: string = "Shake and Bake";
-awesomeName = "Ricky Bobby";
-
 let amount: number = 20;
 amount = 30 - 10;
 
@@ -40,6 +37,3 @@ console.log(foundBook?.length);
 
 let discount: number | string = 20;
 discount = "20%";
-
-const prices: number[] = [100, 24, 234];
-const fruits: string[] = ["apple", "banana", "orange"];
