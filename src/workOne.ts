@@ -35,5 +35,13 @@ for (let book of books) {
 
 console.log(foundBook?.length);
 
-let discount: number | string = 20;
+export let discount: number | string = 20;
 discount = "20%";
+
+const names: string[] = ["John", "Jane", "Jack"];
+
+const isNameList = (name: string): boolean => {
+  return names.includes(name);
+};
+
+console.log(isNameList(names[0]));
