@@ -1,4 +1,4 @@
-let amount: number = 20;
+export let amount: number = 20;
 amount = 30 - 10;
 
 let isAwesome: boolean = true;
@@ -43,5 +43,23 @@ const names: string[] = ["John", "Jane", "Jack"];
 const isNameList = (name: string): boolean => {
   return names.includes(name);
 };
-
 console.log(isNameList(names[0]));
+
+// Challenge
+
+interface REVERSE {
+  reverse: boolean;
+}
+
+export const processData = (
+  input: string | number,
+  config: REVERSE = { reverse: false }
+) => {
+  // Logic
+
+  if (typeof input === "number") {
+    return input * input;
+  } else {
+    return config.reverse ? input.split("").reverse().join("") : input;
+  }
+};
