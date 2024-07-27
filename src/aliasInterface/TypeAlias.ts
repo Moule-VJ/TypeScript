@@ -170,6 +170,8 @@ interface details extends Managerrr {
 }
 
 export const returnDetails = (det: details): details => {
+  console.log(det);
+
   return {
     name: "Mouli VJ",
     empId: "123",
