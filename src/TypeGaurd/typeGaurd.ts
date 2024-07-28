@@ -113,7 +113,7 @@ export const randomPerson = (): Person => {
 
 const anotherPerson: Person = {
   name: "Mouli VJ",
-  study: () => console.log("Studying"),
+  login: () => console.log("Studying"),
 };
 
 export const isStudent = (person: Person): person is Studentt => {
@@ -156,11 +156,9 @@ const reducer = (state: number, act: Action) => {
   }
 };
 
-const newState = reducer(15, {
+export const newState = reducer(15, {
   type: "increment",
   amount: 5,
   timeStamp: 123456,
   user: "Mouli VJ",
 });
-
-console.log(newState);
