@@ -2,6 +2,22 @@ export let array1: string[] = ["Apple", "Bannana", "Mango"];
 export let array2: number[] = [1, 2, 3, 4, 5];
 export let array3: boolean[] = [true, false, true, false];
 
+interface Personnn<T> {
+  anotherFun?: T;
+}
+interface props {
+  name: string;
+  age: number;
+  occ: string;
+}
+export const returnExample: Personnn<props> = {
+  anotherFun: {
+    name: "Mouli VJ",
+    age: 24,
+    occ: "Software Developer",
+  },
+};
+
 // Generics Example One
 
 interface mouli<T> {
@@ -17,12 +33,14 @@ interface mouli<T> {
       d?: boolean;
     }
   ];
-  familiar?: () => mouli<number | string>["people"];
+  familiar?: () => mouli<number | string | boolean>["people"];
   familiarFun?: () => mouli<string>["fun"];
   returnPeople?: () => T;
 }
 
-export let people1: mouli<string | number | mouli<string>["fun"]> = {
+export let people1: mouli<
+  string | number | mouli<string>["fun"] | mouli<string>["age"]
+> = {
   people: ["Mouli", "VJ"],
   name: "Mouli VJ",
   age: 24,
