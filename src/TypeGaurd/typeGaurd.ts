@@ -155,10 +155,3 @@ const reducer = (state: number, act: Action) => {
       throw new Error(`Unsupported action: ${unexpectedAction}`);
   }
 };
-
-export const newState = reducer(15, {
-  type: "increment",
-  amount: 5,
-  timeStamp: 123456,
-  user: "Mouli VJ",
-});
