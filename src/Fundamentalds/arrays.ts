@@ -26,7 +26,22 @@ type Props = {
   year: number;
 };
 
-let car: Props = {
+const car: Props = {
   brand: "Toyota",
   year: 2020,
 };
+
+car.brand = "ford";
+
+type BookType = {
+  readonly title: string;
+  cost?: number;
+};
+
+let book = { title: "book", cost: 20 };
+let pen = { title: "Pen", cost: 220 };
+let noteBook = { title: "noteBook" };
+
+let items: BookType[] = [book, pen, noteBook];
+
+// items[1].title = "new";
