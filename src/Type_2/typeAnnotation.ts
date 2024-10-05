@@ -66,4 +66,4 @@ discount = "20%";
 
 let orderStatus: "processing" | "shipping" | "delivery" = "processing";
 orderStatus = "shipping";
-orderStatus = "cancelled";
+// orderStatus = "cancelled";
