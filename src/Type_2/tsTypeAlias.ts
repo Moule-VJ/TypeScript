@@ -82,10 +82,14 @@ printStaffDetails(bob);
 
 // type Intersection
 
-type Book = { id: number; name: string; price: number };
+type Book = {
+  id: number;
+  name: string;
+  price: number;
+};
 type DiscountedBook = Book & { discount: number };
 
-const book1: Book = {
+export const book1: Book = {
   id: 1,
   name: "How to cook a dragon",
   price: 15,
@@ -98,7 +102,7 @@ const book2: Book = {
 };
 
 // Intersecting
-const discountedBook: DiscountedBook = {
+export const discountedBook: DiscountedBook = {
   id: 3,
   name: "Unicorns books",
   price: 25,
