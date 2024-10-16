@@ -97,3 +97,30 @@ const checkTheme = (theme: Theme): void => {
     return;
   }
 };
+
+enum Color {
+  Red,
+  Blue,
+  Green,
+}
+
+export const getColorName = (color: Color) => {
+  switch (color) {
+    case Color.Red:
+      return "Red";
+
+    case Color.Blue:
+      return "Blue";
+
+    case Color.Green:
+      return "Green";
+
+    default:
+      // at build time
+      let unExpectedColor: never = color;
+      // At run Time
+      throw new Error(`Unexpected Color Value : ${color}`);
+  }
+};
+
+console.log(getColorName(Color.Blue));
