@@ -136,43 +136,91 @@ console.log(manager.getDogDetails());
 
 // Interface Challenge 2
 
-interface Person {
+const getEmployee = (): Person_n | DogOwner_n | Manager_n => {
+  const random = Math.random();
+
+  if (random < 0.33) {
+    return {
+      name: "John",
+    };
+  } else if (random < 0.66) {
+    return {
+      name: "Sarah",
+      dogName: "rex",
+    };
+  } else {
+    return {
+      name: "Bob",
+      managePeople() {
+        console.log(this.name);
+      },
+      delegateTask() {
+        console.log("TASK");
+      },
+    };
+  }
+};
+
+interface Person_n {
   name: string;
 }
 
-interface DogOwner extends Person {
+interface DogOwner_n extends Person_n {
   dogName: string;
 }
 
-interface Managerr extends Person {
+interface Manager_n extends Person_n {
   managePeople(): void;
   delegateTask(): void;
 }
 
-const getEmp = (): Person | DogOwner | Managerr => {
-  const random = Math.random();
+const emplyee: Person_n | DogOwner_n | Manager_n = getEmployee();
 
-    if (random < 0.33) {
-        return {
-            name: "John",
-        };
-      else if (random < 0.66) {
-        return {
-            name: "rex",
-            dogName: "sarah",
-        };
-    } else { 
-        return {
-            name: "bob",
-            managePeople (){ 
-                console.log("Managing people")
-            },
-            delegateTask() {
-                console.log("Delegating the task...")
-            },
-        }
-    }
-  }
+console.log(emplyee);
+
+// Type Predicate
+
+const isManage_2 = (
+  obj: Person_n | DogOwner_n | Manager_n
+): obj is Manager_n => {
+  return "managePeople" in obj;
 };
 
-const emplyee: Person | DogOwner | Managerr = getEmp();
+console.log(isManage_2(emplyee));
+
+if (isManage_2(emplyee)) {
+  emplyee.delegateTask();
+}
+
+// Interface vs type Alias
+
+//  Type aliases can represent primitive types, uniion types, intersection types, tuples, etc while interface are primarily used to represent the shape of an object.,
+
+// things can do in type alias
+
+type Score = number;
+type NumberOfString = number | string;
+type Direction = "up" | "down" | "left" | "right";
+
+//  Using type aliases
+
+export let gameScore: Score = 100;
+export let move: Direction = "down";
+export let random: NumberOfString = "2";
+
+// Tuple
+
+export let pperson: [string, number] = ["john", 25];
+
+let date: [number, number, number] = [12, 17, 2001];
+date.push(100);
+date.push(56);
+
+const getPerson = (): [string, number] => {
+  return ["VJ", 245];
+};
+
+const randomPerson_2 = getPerson();
+console.log(randomPerson_2);
+
+export let susan: [string, number?] = ["VJ"];
