@@ -124,3 +124,27 @@ export const getColorName = (color: Color) => {
 };
 
 console.log(getColorName(Color.Blue));
+
+// Modules in TS
+
+// "moduleDetection": "force",
+
+// this declartion in tsconfig file will change the modules usage in typescript
+
+export const sayHello = (name: string): void => {
+  console.log(`Hello ${name}`);
+};
+
+export let person = "SUSAN";
+
+export type Student = {
+  name: string;
+  age: number;
+};
+
+const newStudent: Student = {
+  name: "peter",
+  age: 24,
+};
+
+export default newStudent;
