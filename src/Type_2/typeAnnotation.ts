@@ -1,53 +1,24 @@
-// Type Annothation
+// Practise 2
+export let amountt: number = 20;
+amountt = 12 - 1;
 
-// string
-let awesomeName: String = "Shake and Bake";
-awesomeName = "something";
-awesomeName = awesomeName.toUpperCase();
+// Union type Practise 2
+export let taxx: number | string = 10;
 
-// number
-let amount = 20;
-amount = 12 - 1;
+taxx = 100;
+taxx = "$10";
 
-// boolean
-let isAwesome: boolean = true;
-isAwesome = false;
+let requestStatuss: "Pending" | "Success" | "Error" = "Pending";
+requestStatuss = "Error";
 
-// Basic Challenge
-
-let greeting: string = "Hellow, TypeScript";
-greeting = greeting.toUpperCase();
-
-let age: number = 25;
-age = age + 5;
-
-let isAdult: boolean = age >= 18;
-isAdult = !isAdult;
-console.log(isAdult);
-
-// Union Type
-// Variable to hold the Value of Multiple Things
-
-let tax: number | string | boolean = 10;
-tax = 100;
-tax = "tax";
-tax = true;
-console.log(tax);
-
-let requestStatus: "pending" | "success" | "error" = "pending";
-
-requestStatus = "pending";
-requestStatus = "error";
-requestStatus = "success";
-
-// Any
+// Type Any
 let notSure: any = 4;
-notSure = "maybe a string";
+notSure = "mabybe a string instead";
 notSure = false;
 
-const books = ["1984", "Mouli", "VJ"];
+// Practical Example of any
+const books = ["1984", "Brave New World", "Fahrenheit 451"];
 let foundBook: string | undefined;
-// let foundBook: string;
 
 for (let book of books) {
   if (book === "1984") {
@@ -56,14 +27,41 @@ for (let book of books) {
   }
 }
 
-// It can be undefined0
-console.log(foundBook?.length);
+// if undefined occurs we wont be having a run time error
 
-// Unions
-//  Types and words
-let discount: number | string = 20;
-discount = "20%";
+console.log(foundBook);
+let ar: number | undefined;
+ar = foundBook?.length;
 
-let orderStatus: "processing" | "shipping" | "delivery" = "processing";
-orderStatus = "shipping";
-// orderStatus = "cancelled";
+// Arrays
+
+let prices: number[] = [100, 75, 42];
+prices.push(20);
+
+// This will cause an error
+
+// prices.push("Hello")
+
+let fruit: string[] = ["Apple", "Orange"];
+
+let randomValues: [] = [];
+let emptyValues = [];
+
+let names = ["Peter", "Susan"];
+let array: (string | boolean)[] = ["Mouli VJ", true, "Orange"];
+
+// Objects
+
+export let car: { brand: string; year: number } = {
+  brand: "Toyota",
+  year: 2020,
+};
+
+car.brand = "Ford";
+// car.color = "Red";
+
+let book = { title: "book", cost: 20 };
+let pen = { title: "Pen", cost: 10 };
+let noteBook = { title: "noteBook" };
+
+let items: { readonly title: string; cost?: number }[] = [book, pen, noteBook];
