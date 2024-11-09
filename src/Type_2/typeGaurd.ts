@@ -39,7 +39,7 @@ type Cat = {
 type Animal = Dog | Cat;
 
 // Option 1 checking the property
-const makeSound = (animal: Animal) => {
+export const makeSound = (animal: Animal) => {
   if (animal.type === "Dog") {
     animal.bark();
   } else {
@@ -48,7 +48,7 @@ const makeSound = (animal: Animal) => {
 };
 
 // Option 2 checking the method
-const makeSound_2 = (animal: Animal) => {
+export const makeSound_2 = (animal: Animal) => {
   if ("bark" in animal) {
     animal.bark();
   } else {
