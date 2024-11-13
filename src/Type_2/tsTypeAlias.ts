@@ -1,49 +1,11 @@
-type User = {
+// Type Alias in TS
+export type User = {
   id: number;
   name: string;
   isActive: boolean;
 };
 
-export const John: User = {
-  id: Math.random(),
-  name: "Mouli VJ",
-  isActive: true,
-};
-
-const createuser = (user: User): User => {
-  console.log(user);
-  return user;
-};
-
-createuser({
-  id: 1,
-  name: "Mouli VJ",
-  isActive: true,
-});
-
-type StringOrNumber = string | number;
-
-let value: StringOrNumber;
-value = "Mouli";
-value = 123;
-
-type Theme = "light" | "dark";
-
-type STATUS = "pending" | "Completed";
-let statusResponse: STATUS = "pending";
-statusResponse = "Completed";
-
-// Function Example
-let theme: Theme;
-theme = "dark";
-
-const setTheme = (t: Theme) => {
-  theme = t;
-};
-
-setTheme("dark");
-
-// Type Challenge
+// Type Alias Challenge
 
 type Employee = {
   id: number;
@@ -51,45 +13,53 @@ type Employee = {
   department: string;
 };
 
-type Manager = {
+export type Manager = {
   id: number;
   name: string;
-  emp: Employee[];
+  employees: Employee[];
+};
+
+const alice: Employee = {
+  id: 1,
+  name: "Alice",
+  department: "Sales",
+};
+
+const steve: Employee = {
+  id: 2,
+  name: "steve",
+  department: "Sales",
+};
+
+export const bob: Manager = {
+  id: 1,
+  name: "Bobo",
+  employees: [alice, steve],
 };
 
 type Staff = Employee | Manager;
 
 const printStaffDetails = (staff: Staff): void => {
-  //    Checking a specif property in an object
-
-  if ("emp" in staff) {
-    console.log(
-      `${staff.name} is the manager for these many${staff.emp.length}`
-    );
+  // conditional Type Check
+  if ("employees" in staff) {
+    console.log(`${staff.name} is an manager for ${staff.employees.length}`);
   } else {
-    console.log(
-      `${staff.name} is an employee in the ${staff.department} department`
-    );
+    console.log(`${staff.name} is an employee in a ${staff.department}`);
   }
 };
-
-const alice: Employee = { id: 1, name: "Alice", department: "Sales" };
-const steve: Employee = { id: 1, name: "Alice", department: "HR" };
-const bob: Manager = { id: 1, name: "Bobo", emp: [alice, steve] };
 
 printStaffDetails(alice);
 printStaffDetails(bob);
 
-// type Intersection
+// Intersection Type
 
 type Book = {
   id: number;
   name: string;
   price: number;
 };
-type DiscountedBook = Book & { discount: number };
 
-export const book1: Book = {
+const book1: Book = {
   id: 1,
   name: "How to cook a dragon",
   price: 15,
@@ -97,17 +67,19 @@ export const book1: Book = {
 
 const book2: Book = {
   id: 1,
-  name: "How to eat the frog",
+  name: "secret life of unicorn",
   price: 18,
 };
 
-// Intersecting
-export const discountedBook: DiscountedBook = {
+// making an intersection type
+const discountedBook: Book & { discount: number } = {
   id: 3,
-  name: "Unicorns books",
-  price: 25,
+  name: "The Real Discounted book",
+  price: 189,
   discount: 0.15,
 };
+
+// Computed Properties
 
 const propName = "age";
 
@@ -115,6 +87,6 @@ type Animal = {
   [propName]: number;
 };
 
-let tiger: Animal = {
+export let tiger: Animal = {
   [propName]: 5,
 };
