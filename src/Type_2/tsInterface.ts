@@ -1,45 +1,59 @@
-// Interface Methods
+// Interface
+
 interface Book {
   readonly isbn: number;
   title: string;
   author: string;
   genre?: string;
-  printMethod: () => void;
-  printTitle: (message: string) => string;
-  printSomeThing: (someValue: number) => number;
+  printAuthor(): void;
+  printTitle(message: string): string;
+  printSomething: (someValue: number) => number;
 }
 
-export const deepWork: Book = {
+const deepWork: Book = {
   isbn: 123,
-  title: "Dep Work",
-  author: "Cal newPort",
-  genre: "self-help",
-  printMethod() {
-    console.log(this.author);
-  },
+  title: "Deep Work",
+  author: "Cal newport",
+  genre: "Self-Help",
+  // printAuthor() {
+  //   console.log(this.author);
+  // },
   printTitle(message) {
-    return message;
+    return `${this.title} and ${message}`;
   },
-  //   First option
-  //   printSomeThing: (someValue) => {
-  //     return someValue;
-  //   },
 
-  //   Second option
-  //   printSomeThing: function (someValue) {
-  //     return someValue;
-  //   },
+  // FIRST OPTION
 
-  //   Third option
-  printSomeThing(someValue) {
+  printSomething: function (someValue) {
     return someValue;
+  },
+
+  // SECOND OTPION
+
+  // printSomething: (someValue) => {
+  //   console.log(deepWork.author);
+  //   return someValue;
+  // },
+
+  // Third Option
+
+  // printSomething: (someValue) => {
+  //   return someValue;
+  // },
+
+  // Another way of implementing it
+  printAuthor: () => {
+    console.log(deepWork.author);
   },
 };
 
-deepWork.printMethod();
-deepWork.printTitle("an Awesome Book");
+// Interface Methods
 
-deepWork.printSomeThing(34);
+deepWork.printAuthor();
+const result = deepWork.printTitle("is awesome book");
+console.log(result);
+
+console.log(deepWork.printSomething(34));
 
 // Interface Challenge
 
@@ -51,21 +65,20 @@ interface Computer {
   storage?: number;
 }
 
-const laptop: Computer = {
-  id: Math.random(),
-  brand: "Random brand",
+const lapTop: Computer = {
+  id: 1,
+  brand: "random brand",
   ram: 8,
-  upgradeRam(increase) {
-    this.ram += increase;
+  upgradeRam(amount) {
+    this.ram += amount;
     return this.ram;
   },
 };
 
-laptop.storage = 256;
-console.log(laptop.upgradeRam(10));
-console.log(laptop);
+lapTop.storage = 256;
+console.log(lapTop.upgradeRam(4));
 
-// Interface Merging
+// Interface Merge and Extend
 
 interface Person {
   name: string;
@@ -77,71 +90,82 @@ interface DogOwner {
   getDogDetails(): string;
 }
 
-// We can add a property by again re writting the interface
-
+// Extending Person interface
 interface Person {
   age: number;
 }
 
-export const person: Person = {
-  name: "VJ",
-  age: 25,
+const person: Person = {
+  name: "John",
+  age: 26,
   getDetails() {
-    return `The name is ${this.name} and the age is ${this.age}`;
+    return `Name is ${this.name} and age is ${this.age}`;
   },
 };
 
 console.log(person.getDetails());
 
-// Extending one interface to another
 interface Employee extends Person {
-  employeeId: number;
+  employeeID: number;
 }
 
-const employee: Employee = {
-  name: "Jane",
+// Extending the interface
+
+export const employee: Employee = {
+  name: "jane",
   age: 28,
-  employeeId: 10446862,
+  employeeID: 123,
   getDetails() {
-    return `${this.name} ${this.age} ${this.employeeId}`;
+    return `hi i am ${this.name} and this is my ${this.employeeID}`;
   },
 };
 
-console.log(employee.getDetails());
+// Example 2
 
-// Extending Example 2
-
-interface ManagePeople extends Person, DogOwner {
-  managePeople(): void;
+interface Manager extends Person, DogOwner {
+  managePeople: () => void;
 }
 
-const manager: ManagePeople = {
-  name: "Bob",
+export const manager: Manager = {
+  name: "bob",
   age: 35,
-  dogName: "Pit Butll",
-  managePeople() {
-    console.log(this.dogName);
-  },
+  dogName: "Bubbu",
+
   getDetails() {
-    return this.dogName;
+    return `Name : ${this.name}, age : ${this.age}`;
   },
+
+  // Couldnt use arrow funciton
   getDogDetails() {
-    return this.dogName;
+    return `Name : is ${this.dogName} `;
+  },
+
+  managePeople() {
+    console.log("Managing people");
   },
 };
 
-manager.managePeople();
-console.log(manager.getDetails());
-console.log(manager.getDogDetails());
+// Interface Challenge Part One (with Type Gaurd)
 
-// Interface Challenge 2
+interface Personn {
+  name: string;
+}
 
-const getEmployee = (): Person_n | DogOwner_n | Manager_n => {
+interface DogOwnerr extends Personn {
+  dogName: string;
+}
+
+interface Managerr extends Personn {
+  managePeople(): void;
+  delegateTask(): void;
+}
+
+const getEmployees = (): Personn | DogOwnerr | Managerr => {
   const random = Math.random();
 
   if (random < 0.33) {
     return {
-      name: "John",
+      name: "JOhn",
     };
   } else if (random < 0.66) {
     return {
@@ -150,77 +174,32 @@ const getEmployee = (): Person_n | DogOwner_n | Manager_n => {
     };
   } else {
     return {
-      name: "Bob",
+      name: "bob",
       managePeople() {
-        console.log(this.name);
+        console.log("Managing People...");
       },
       delegateTask() {
-        console.log("TASK");
+        console.log("delegating the task...");
       },
     };
   }
 };
 
-interface Person_n {
-  name: string;
-}
+const employees: Personn | DogOwnerr | Managerr = getEmployees();
 
-interface DogOwner_n extends Person_n {
-  dogName: string;
-}
+console.log(employees);
 
-interface Manager_n extends Person_n {
-  managePeople(): void;
-  delegateTask(): void;
-}
+// Interface Type Predicate
+// by checking the interface type and its property
 
-const emplyee: Person_n | DogOwner_n | Manager_n = getEmployee();
-
-console.log(emplyee);
-
-// Type Predicate
-
-const isManage_2 = (
-  obj: Person_n | DogOwner_n | Manager_n
-): obj is Manager_n => {
+const isManager = (obj: Personn | DogOwnerr | Managerr): obj is Managerr => {
   return "managePeople" in obj;
 };
 
-console.log(isManage_2(emplyee));
+console.log(isManager(employees));
 
-if (isManage_2(emplyee)) {
-  emplyee.delegateTask();
+if (isManager(employees)) {
+  employees.delegateTask();
+} else {
+  console.log("he is not a manager");
 }
-
-// Interface vs type Alias
-
-//  Type aliases can represent primitive types, uniion types, intersection types, tuples, etc while interface are primarily used to represent the shape of an object.,
-
-// things can do in type alias
-
-type Score = number;
-type NumberOfString = number | string;
-type Direction = "up" | "down" | "left" | "right";
-
-//  Using type aliases
-
-export let gameScore: Score = 100;
-export let move: Direction = "down";
-export let random: NumberOfString = "2";
-
-// Tuple
-
-export let pperson: [string, number] = ["john", 25];
-
-let date: [number, number, number] = [12, 17, 2001];
-date.push(100);
-date.push(56);
-
-const getPerson = (): [string, number] => {
-  return ["VJ", 245];
-};
-
-const randomPerson_2 = getPerson();
-console.log(randomPerson_2);
-
-export let susan: [string, number?] = ["VJ"];
