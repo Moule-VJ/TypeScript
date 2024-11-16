@@ -1,5 +1,4 @@
 // Interface
-
 interface Book {
   readonly isbn: number;
   title: string;
@@ -203,3 +202,22 @@ if (isManager(employees)) {
 } else {
   console.log("he is not a manager");
 }
+
+// Tuple
+// Defining the type of an array
+
+let personTuple: [string, number] = ["john", 25];
+
+let date: [number, number, number] = [12, 17, 2001];
+
+date.push(90);
+
+const getPerson = (): [string, number] => {
+  return ["john", 25];
+};
+
+let randomPerson = getPerson();
+console.log(randomPerson[0]);
+console.log(randomPerson[1]);
+
+let susan: [string, number?] = ["Susan", 34];
