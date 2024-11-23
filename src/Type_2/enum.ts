@@ -1,8 +1,9 @@
-//  Enums
+// Enums in TS
 
+// it helps us to create a constant where we can use anywhere in the file correctly
 enum ServerResponseStatus {
-  Success = 200,
-  Error = 500,
+  SUCCESS = 200,
+  ERROR = 500,
 }
 
 interface ServerResponse {
@@ -10,11 +11,11 @@ interface ServerResponse {
   data: string[];
 }
 
-const getServerResponse = (): ServerResponse => {
+// Function to get the server response
+export const getServerResponse = (): ServerResponse => {
   return {
-    // result: "Succes" // not allowed
-    result: ServerResponseStatus.Success,
-    data: ["first Item", "Second item"],
+    result: ServerResponseStatus.SUCCESS,
+    data: ["it worked"],
   };
 };
 
@@ -22,53 +23,57 @@ const response: ServerResponse = getServerResponse();
 
 console.log(response);
 
-//  Enum Reverse mapping
+// Enum Reverse Mapping
 
-Object.values(ServerResponseStatus).forEach((values) => {
-  if (typeof values === "number") {
-    console.log(values);
+Object.values(ServerResponseStatus).forEach((val) => {
+  if (typeof val === "number") {
+    console.log("its a number" + val);
   }
+  console.log("its not a number");
 });
 
-// Have to note of
+// Main Gotach !
 
 enum NumericEnum {
   Member = 1,
 }
 
 enum StringEnum {
-  Member = "Value",
+  Member = "value",
 }
 
-let numericEnumValue: NumericEnum = 1; // This is allowed
-console.log(numericEnumValue);
+// This Works
 
-//   let stringEnumValue: StringEnum = "Value"; // this is not allowed
+export let numericEnumValue: NumericEnum = 1;
 
-// Enum Challenge
+// This dosent work
+// We cant change the string constant calue to a string somewhere else in the file
+// export let stringEnumValue: StringEnum = "value";
+
+// Tuple and Enum Challenge
 
 enum UserRole {
-  Admin,
-  Manager,
-  Employee,
+  ADMIN = "admin",
+  MANAGER = "manager",
+  EMPLOYEE = "employee",
 }
 
-type User = {
+export type User = {
   id: number;
   name: string;
   role: UserRole;
-  contact: [string, string];
+  contact: [string, number];
 };
 
 const createUser = (user: User): User => {
   return user;
 };
 
-const userr: User = {
-  id: Math.random(),
+export const user: User = createUser({
+  id: 1,
   name: "Mouli VJ",
-  role: UserRole.Admin,
-  contact: ["Mouli VJ", "123"],
-};
+  role: UserRole.EMPLOYEE,
+  contact: ["qw", 123456],
+});
 
-console.log(userr);
+console.log(user);
