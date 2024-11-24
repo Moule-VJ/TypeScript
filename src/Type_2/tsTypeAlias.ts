@@ -90,3 +90,5 @@ type Animal = {
 export let tiger: Animal = {
   [propName]: 5,
 };
+
+const susan = "susan";
